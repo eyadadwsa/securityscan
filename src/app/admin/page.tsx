@@ -14,6 +14,7 @@ import {
   Server,
   Activity,
   FileText,
+  PieChart,
 } from "lucide-react";
 import { AdminOverview } from "@/components/admin/admin-overview";
 import { UserManagement } from "@/components/admin/user-management";
@@ -21,6 +22,7 @@ import { SubscriptionManagement } from "@/components/admin/subscription-manageme
 import { ScanManagement } from "@/components/admin/scan-management";
 import { SystemConfiguration } from "@/components/admin/system-configuration";
 import { SystemMonitoring } from "@/components/admin/system-monitoring";
+import { AnalyticsDashboard } from "@/components/admin/analytics-dashboard";
 
 export const metadata: Metadata = {
   title: "Admin Dashboard - SecureSEO",
@@ -36,10 +38,14 @@ export default function AdminDashboardPage() {
       />
 
       <Tabs defaultValue="overview" className="space-y-4">
-        <TabsList className="grid grid-cols-6 md:w-auto w-full">
+        <TabsList className="grid grid-cols-7 md:w-auto w-full">
           <TabsTrigger value="overview" className="flex items-center gap-2">
             <BarChart size={16} />
             <span className="hidden sm:inline">Overview</span>
+          </TabsTrigger>
+          <TabsTrigger value="analytics" className="flex items-center gap-2">
+            <PieChart size={16} />
+            <span className="hidden sm:inline">Analytics</span>
           </TabsTrigger>
           <TabsTrigger value="users" className="flex items-center gap-2">
             <Users size={16} />
@@ -68,6 +74,10 @@ export default function AdminDashboardPage() {
 
         <TabsContent value="overview" className="space-y-4">
           <AdminOverview />
+        </TabsContent>
+
+        <TabsContent value="analytics" className="space-y-4">
+          <AnalyticsDashboard />
         </TabsContent>
 
         <TabsContent value="users" className="space-y-4">

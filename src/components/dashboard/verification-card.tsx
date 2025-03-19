@@ -1,3 +1,4 @@
+import { ReactNode } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -11,16 +12,38 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { AlertCircle, FileText, Globe, Link2 } from "lucide-react";
 
 interface VerificationCardProps {
+  icon?: ReactNode;
+  title?: string;
+  description?: string;
   isVerified?: boolean;
   domain?: string;
   onVerify?: () => void;
 }
 
 const VerificationCard = ({
+  icon,
+  title,
+  description,
   isVerified = false,
   domain = "example.com",
   onVerify = () => {},
 }: VerificationCardProps) => {
+  // If icon, title, and description are provided, render the simple card version
+  if (icon && title && description) {
+    return (
+      <Card className="overflow-hidden">
+        <CardContent className="p-6">
+          <div className="flex flex-col items-center text-center">
+            <div className="mb-4 p-3 rounded-full bg-primary/10">{icon}</div>
+            <h3 className="font-medium mb-2">{title}</h3>
+            <p className="text-sm text-muted-foreground">{description}</p>
+          </div>
+        </CardContent>
+      </Card>
+    );
+  }
+
+  // Otherwise render the full verification card
   return (
     <Card className="w-full">
       <CardHeader>
